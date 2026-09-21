@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>flex와 미디어 쿼리 나눠 맡기</title>
+  <style>
+    * { box-sizing: border-box;}
+    body { font-family: sans-serif; margin: 16px; background: #f5f5f5;}
+
+    .card {
+        max-width: 840px;
+        margin: 0 auto;
+        padding: 32px;
+        background: #ffffff;
+        border: 1px solid #d0d0d0;
+        border-radius: 12px;
+        align-items: flex-end;
+      }
+     /* ① 프로필: 사진과 글을 가로로 */
+     .profile { display: flex; gap: 16px; align-items: center; background: #fff;}
+     .profile img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+ 
+     /* ② 취미 목록: 미디어 쿼리 없이 flex만으로 칸 수가 알아서 바뀜 */
+     .hobbies { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; margin-top: 16px; background: #fff;}
+     .hobbies li { flex: 1 1 110px; padding: 12px; background: #eee; border-radius: 6px; text-align: center; }
+ 
+     /* ③ 좁아지면 프로필만 세로로 — 이건 flex 혼자 못 하는 일 */
+     @media (max-width: 800px) {
+       .profile { flex-direction: column; text-align: center; }
+     }
+     @media (max-width: 500px) {
+        .hobbies {flex-basis: calc((100% - 16px) / 3);}
+     }
+
+
+    button {
+        padding: 16px 50px;
+        margin: 10px;
+        background: #020416;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    button:hover{
+        background: #acc8ff;
+        color: #020416;
+        transform: translateY(-6px);
+    }
+    .smooth {
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+   
+  </style>
+</head>
+<body>
+    <div class="card">
+  <div class="profile">
+    <img src="tennis-ball-square.jpg" alt="테니스공 이미지">
+    <div>
+      <h1>홍길동</h1>
+      <p>테니스와 머신러닝을 좋아합니다.</p>
+    </div>
+  </div>
+  <ul class="hobbies inline">
+    <li>테니스</li><li>음악 감상</li><li>산책</li><li>사진</li><li>여행</li>
+  </ul>
+  <button type="button" class="smooth" >팔로우</button>  
+  </div>
+</body>
+</html>
+

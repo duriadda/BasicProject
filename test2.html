@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>flex와 미디어 쿼리 나눠 맡기</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: sans-serif; margin: 16px; }
+
+    /* ① 프로필: 사진과 글을 가로로 */
+    .profile { display: flex; gap: 16px; align-items: center; }
+    .profile img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+
+    /* ② 취미 목록: 미디어 쿼리 없이 flex만으로 칸 수가 알아서 바뀜 */
+    .hobbies { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; margin-top: 16px; }
+    .hobbies li { flex: 1 1 120px; padding: 12px 20px; background: #eee; border-radius: 6px; text-align: center; }
+
+    /* ③ 좁아지면 프로필만 세로로 — 이건 flex 혼자 못 하는 일 */
+    @media (max-width: 500px) {
+      .profile { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile">
+    <img src="assets/tennis-ball-square.jpg" alt="테니스공 사진">
+    <div>
+      <h1>홍길동</h1>
+      <p>테니스와 머신러닝을 좋아합니다.</p>
+    </div>
+  </div>
+  <ul class="hobbies">
+    <li>테니스</li><li>음악 감상</li><li>산책</li><li>사진</li><li>여행</li>
+  </ul>
+</body>
+</html>
